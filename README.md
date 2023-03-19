@@ -8,16 +8,18 @@ Tictactoe implementation in React & Vue.js
 - [Requirements](#requirements)
 - [Clone](#clone)
 - [Installation](#installation)
-- [React](#react)
-    - [Watch](#watch)
-    - [Build](#build)
-    - [Start](#start)
-- [Vue](#vue)
-    - [Watch](#watch-1)
-    - [Build](#build-1)
-    - [Start](#start-1)
-- [Vitest](#vitest)
-    - [Test](#test)
+- [Infrastructures](#infrastructures)
+    - [React](#react)
+        - [Watch](#watch)
+        - [Build](#build)
+        - [Start](#start)
+    - [Vue](#vue)
+        - [Watch](#watch-1)
+        - [Build](#build-1)
+        - [Start](#start-1)
+    - [Vitest](#vitest)
+        - [Test](#test)
+
 
 
 ## Development
@@ -49,18 +51,22 @@ npm install
 
 [Back to summary](#summary)
 
-### React
+### Infrastructures
 
 [Back to summary](#summary)
 
-#### Watch
+#### React
+
+[Back to summary](#summary)
+
+##### Watch
 
 ```bash
 npm --workspace infrastructure/react run watch
 ```
 [Back to summary](#summary)
 
-#### Build
+##### Build
 
 ```bash
 npm --workspace infrastructure/react run build
@@ -68,7 +74,7 @@ npm --workspace infrastructure/react run build
 
 [Back to summary](#summary)
 
-#### Start
+##### Start
 
 ```bash
 npm --workspace infrastructure/react start
@@ -76,11 +82,11 @@ npm --workspace infrastructure/react start
 
 [Back to summary](#summary)
 
-### Vue
+#### Vue
 
 [Back to summary](#summary)
 
-#### Watch
+##### Watch
 
 ```bash
 npm --workspace infrastructure/vue run watch
@@ -88,7 +94,7 @@ npm --workspace infrastructure/vue run watch
 
 [Back to summary](#summary)
 
-#### Build
+##### Build
 
 ```bash
 npm --workspace infrastructure/vue run build
@@ -96,7 +102,7 @@ npm --workspace infrastructure/vue run build
 
 [Back to summary](#summary)
 
-#### Start
+##### Start
 
 ```bash
 npm --workspace infrastructure/vue start
@@ -104,11 +110,11 @@ npm --workspace infrastructure/vue start
 
 [Back to summary](#summary)
 
-### Vitest
+#### Vitest
 
 [Back to summary](#summary)
 
-#### Test
+##### Test
 
 ```bash
 npm --workspace infrastructure/vitest test
