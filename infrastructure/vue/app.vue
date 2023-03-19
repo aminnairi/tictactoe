@@ -6,8 +6,8 @@
   </div>
   <div v-else>
     <p>Its {{ player }} turn</p>
-    <div v-for="(row, rowIndex) in board.squares" class="row">
-      <div v-for="(column, columnIndex) in row" class="column" @click="onSquareClicked(rowIndex, columnIndex)">
+    <div v-for="(row, rowIndex) in board.squares" className="row">
+      <div v-for="(column, columnIndex) in row" className="column" @click="onSquareClicked(rowIndex, columnIndex)">
         <player :player="column.player" />
       </div>
     </div>
