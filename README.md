@@ -2,6 +2,24 @@
 
 Tictactoe implementation in React & Vue.js
 
+## Summary
+
+- [Development](#development)
+- [Requirements](#requirements)
+- [Clone](#clone)
+- [Installation](#installation)
+- [React](#react)
+    - [Watch](#watch)
+    - [Build](#build)
+    - [Start](#start)
+- [Vue](#vue)
+    - [Watch](#watch-1)
+    - [Build](#build-1)
+    - [Start](#start-1)
+- [Vitest](#vitest)
+    - [Test](#test)
+
+
 ## Development
 
 ### Requirements
