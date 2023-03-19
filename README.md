@@ -62,3 +62,11 @@ npm --workspace infrastructure/vue run build
 ```bash
 npm --workspace infrastructure/vue start
 ```
+
+### Vitest
+
+#### Test
+
+```bash
+npm --workspace infrastructure/vitest test
+```
