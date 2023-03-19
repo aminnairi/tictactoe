@@ -3,6 +3,7 @@
   "workspaces": [
     "domain",
     "infrastructure/react",
-    "infrastructure/vue"
+    "infrastructure/vue",
+    "infrastructure/vitest"
   ]
 }

@@ -3,3 +3,5 @@
 /infrastructure/react/node_modules
 
 /infrastructure/vue/node_modules
+
+/infrastructure/vitest/node_modules
