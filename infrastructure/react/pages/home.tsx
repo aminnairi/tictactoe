@@ -4,9 +4,20 @@ import { useTictactoe } from "../hooks/tictactoe";
 import { PlayerCurrent } from "../components/player-current";
 import { PlayerWinner } from "../components/player-winner";
 import { Error } from "../components/error";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
 
 export const HomePage = () => {
   const { error, winner, player, board, onSquareClicked, onRestartClicked } = useTictactoe();
+
+  if (winner === PlayerEnumeration.None) {
+    return (
+      <Fragment>
+        <h1>Tie...</h1>
+        <p>No one managed to win this game.</p>
+        <button onClick={onRestartClicked}>Restart?</button>
+      </Fragment>
+    );
+  }
 
   if (winner) {
     return (

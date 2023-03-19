@@ -1,2 +1,5 @@
 /node_modules
+
 /infrastructure/react/node_modules
+
+/infrastructure/vue/node_modules

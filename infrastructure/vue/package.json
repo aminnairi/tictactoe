@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@infrastructure/vue",
+  "description": "Vue infrastructure",
+  "version": "0.1.0",
+  "scripts": {
+    "watch": "vite",
+    "build": "vite build",
+    "start": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "4.1.0",
+    "autoprefixer": "10.4.14",
+    "cssnano": "5.1.15",
+    "vite": "4.2.0"
+  }
+}
