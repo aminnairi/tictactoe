@@ -1,5 +1,7 @@
 # tictactoe
 
+Tictactoe implementation in React & Vue.js
+
 ## Development
 
 ### Requirements
@@ -39,4 +41,24 @@ npm --workspace infrastructure/react run build
 
 ```bash
 npm --workspace infrastructure/react start
+```
+
+### Vue
+
+#### Watch
+
+```bash
+npm --workspace infrastructure/vue run watch
+```
+
+#### Build
+
+```bash
+npm --workspace infrastructure/vue run build
+```
+
+#### Start
+
+```bash
+npm --workspace infrastructure/vue start
 ```
