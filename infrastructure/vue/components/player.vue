@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PlayerEnumeration } from "../../../domain/enumerations/player";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
 
 const { player } = defineProps({
   player: String

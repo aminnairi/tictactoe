@@ -1,5 +1,5 @@
 import { Fragment } from "preact";
-import { board, player, winner, onSquareClicked, restart } from "./signals/tictactoe";
+import { board, player, winner, error, onSquareClicked, restart } from "./signals/tictactoe";
 import { Player } from "./components/player";
 
 
@@ -18,6 +18,7 @@ export const Main = () => {
         <Fragment>
             <h1>Tictactoe</h1>
             <p>It's {player} turn</p>
+            {error.value && <small style={{ padding: 5, backgroundColor: "darkred", color: "red" }}>{error}</small>}
             {board.value.squares.map((row, rowIndex) => (
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     {row.map((column, columnIndex) => (

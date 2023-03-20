@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useTictactoe } from "./hooks/tictactoe";
+import { useTictactoe } from "./composables/tictactoe";
 import Player from "./components/player.vue";
 
 const { board, player, winner, error, onSquareClicked, restart } = useTictactoe();

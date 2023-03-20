@@ -15,14 +15,19 @@ export const useTictactoe = () => {
   const [error, setError] = useState<Error | null>(null);
 
   const onSquareClicked = useCallback((player: PlayerEnumeration, row: number, column: number): MouseEventHandler<HTMLDivElement> => () => {
-    try {
-      setError(null);
-      setBoard(selectSquareUsecase.execute(board, player, row, column));
-      setPlayer(player === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle);
-    } catch (error) {
-      setError(error);
+    const possibleNewBoard = selectSquareUsecase.execute(board, player, row, column);
+    const newBoard = possibleNewBoard.withDefault(board);
+    const error = possibleNewBoard.withError();
+
+    setError(error);
+
+    if (error) {
+      return;
     }
-  }, [board, player, selectSquareUsecase, getWinnerUsecase, setBoard, setPlayer, setWinner]);
+
+    setBoard(newBoard);
+    setPlayer(player === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle);
+  }, [board, player, selectSquareUsecase, setBoard, setPlayer]);
 
   const onRestartClicked = useCallback(() => {
     setBoard(createBoardUsecase.execute(3, 3));

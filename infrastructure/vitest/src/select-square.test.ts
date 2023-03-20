@@ -1,11 +1,11 @@
 import { it, expect } from "vitest";
-import { PlayerEnumeration } from "../../../domain/enumerations/player";
-import { AlreadySelectedSquareError } from "../../../domain/errors/already-selected-square";
-import { ColumnGreaterThanRowLengthError } from "../../../domain/errors/column-greater-than-row-length";
-import { ColumnLessThanZeroError } from "../../../domain/errors/column-less-than-zero";
-import { RowGreaterThanBoardLengthError } from "../../../domain/errors/row-greater-than-board-length";
-import { RowLessThanZeroError } from "../../../domain/errors/row-less-than-zero";
-import { SelectSquareUsecase } from "../../../domain/usecases/select-square";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
+import { AlreadySelectedSquareError } from "@application/domain/errors/already-selected-square";
+import { ColumnGreaterThanRowLengthError } from "@application/domain/errors/column-greater-than-row-length";
+import { ColumnLessThanZeroError } from "@application/domain/errors/column-less-than-zero";
+import { RowGreaterThanBoardLengthError } from "@application/domain/errors/row-greater-than-board-length";
+import { RowLessThanZeroError } from "@application/domain/errors/row-less-than-zero";
+import { SelectSquareUsecase } from "@application/domain/usecases/select-square";
 
 it("should throw an error when selecting a row below zero", () => {
     const selectSquareUsecase = new SelectSquareUsecase();

@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
-import { GetWinnerUsecase } from "../../../domain/usecases/get-winner";
-import { PlayerEnumeration } from "../../../domain/enumerations/player";
+import { GetWinnerUsecase } from "@application/domain/usecases/get-winner";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
 
 it("should return the winner of the first row", () => {
     const getWinnerUsecasee = new GetWinnerUsecase();

@@ -1,17 +1,17 @@
 <template>
-  <div v-if="winner === PlayerEnumeration.Circle">
+  <div v-if="player === PlayerEnumeration.Circle">
     Circle
   </div>
-  <div v-else-if="winner === PlayerEnumeration.Cross">
+  <div v-else-if="player === PlayerEnumeration.Cross">
     Cross
   </div>
-  <div v-else-if="winner === PlayerEnumeration.None">
+  <div v-else-if="player === PlayerEnumeration.None">
     No one
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PlayerEnumeration } from "../../../../domain/enumerations/player";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
 
 const { player } = defineProps({
   player: String

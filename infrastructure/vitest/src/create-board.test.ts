@@ -1,5 +1,5 @@
 import { it, expect } from "vitest";
-import { CreateBoardUsecase } from "../../../domain/usecases/create-board";
+import { CreateBoardUsecase } from "@application/domain/usecases/create-board";
 
 it("should return a board of 3x3", () => {
     const createBoardUsecase = new CreateBoardUsecase();

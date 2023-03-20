@@ -15,21 +15,20 @@ export const useTictactoe = () => {
   const winner = ref(undefined);
   const board = ref(createBoardUsecase.execute(3, 3));
 
-  const onSquareClicked = (row, column) => {
-    error.value = null;
+  const onSquareClicked = (row: number, column: number) => {
+    const possibleNewBoard = selectSquareUsecase.execute(board.value, player.value, row, column);
+    const newBoard = possibleNewBoard.withDefault(board.value);
+    const newError = possibleNewBoard.withError();
 
-    try {
-      const newBoard = selectSquareUsecase.execute(board.value, player.value, row, column);
-      board.value = newBoard;
-      player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
-      winner.value = getWinnerUsecase.execute(newBoard);
-    } catch (thrownError) {
-      if (thrownError instanceof Error) {
-        error.value = thrownError.message;
-      } else {
-        error.value = String(thrownError);
-      }
+    error.value = newError; 
+
+    if (error.value) {
+      return;
     }
+
+    board.value = newBoard;
+    player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
+    winner.value = getWinnerUsecase.execute(newBoard);
   };
 
   const restart = () => {
