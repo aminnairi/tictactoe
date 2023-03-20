@@ -1,6 +1,61 @@
 import { it, expect } from "vitest";
 import { PlayerEnumeration } from "../../../domain/enumerations/player";
+import { AlreadySelectedSquareError } from "../../../domain/errors/already-selected-square";
+import { ColumnGreaterThanRowLengthError } from "../../../domain/errors/column-greater-than-row-length";
+import { ColumnLessThanZeroError } from "../../../domain/errors/column-less-than-zero";
+import { RowGreaterThanBoardLengthError } from "../../../domain/errors/row-greater-than-board-length";
+import { RowLessThanZeroError } from "../../../domain/errors/row-less-than-zero";
 import { SelectSquareUsecase } from "../../../domain/usecases/select-square";
+
+it("should throw an error when selecting a row below zero", () => {
+    const selectSquareUsecase = new SelectSquareUsecase();
+
+    const board = {
+        squares: [[]]
+    };
+
+    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, -1, 0)).toThrowError(RowLessThanZeroError);
+});
+
+it("should throw an error when selecting a row outside of the board", () => {
+    const selectSquareUsecase = new SelectSquareUsecase();
+
+    const board = {
+        squares: [[]]
+    };
+
+    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 10, 0)).toThrowError(RowGreaterThanBoardLengthError);
+});
+
+it("should throw an error when selecting a column below zero", () => {
+    const selectSquareUsecase = new SelectSquareUsecase();
+
+    const board = {
+        squares: [[]]
+    };
+
+    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, -1)).toThrowError(ColumnLessThanZeroError);
+});
+
+it("should throw an error when selecting a column oustdide the board", () => {
+    const selectSquareUsecase = new SelectSquareUsecase();
+
+    const board = {
+        squares: [[]]
+    };
+
+    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 10)).toThrowError(ColumnGreaterThanRowLengthError);
+});
+
+it("should throw an error when selecting a column already selected", () => {
+    const selectSquareUsecase = new SelectSquareUsecase();
+
+    const board = {
+        squares: [[{player: PlayerEnumeration.Circle}]]
+    };
+
+    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 0)).toThrowError(AlreadySelectedSquareError);
+});
 
 it("should work when selecting as circle", () => {
     const selectSquareUsecase = new SelectSquareUsecase();
