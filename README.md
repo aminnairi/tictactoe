@@ -4,120 +4,34 @@ Tictactoe implementation in React & Vue.js
 
 ## Summary
 
-- [Development](#development)
-- [Requirements](#requirements)
-- [Clone](#clone)
-- [Installation](#installation)
-- [Infrastructures](#infrastructures)
-    - [React](#react)
-        - [Watch](#watch)
-        - [Build](#build)
-        - [Start](#start)
-    - [Vue](#vue)
-        - [Watch](#watch-1)
-        - [Build](#build-1)
-        - [Start](#start-1)
-    - [Vitest](#vitest)
-        - [Test](#test)
-
-
-
-## Development
+- [Summary](#summary)
+- [Code of Conduct](#code-of-conduct)
+- [Contributing & Developpment](#contributing--developpment)
+- [License](#license)
+- [Security](#security)
 
 [Back to summary](#summary)
 
-### Requirements
+## Code of Conduct
 
-- [Git](https://git-scm.com/)
-- [Node](https://nodejs.org/en)
-- [NPM](https://www.npmjs.com/)
+See [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md).
 
 [Back to summary](#summary)
 
-### Clone
+## Developpment
 
-```bash
-git clone git@github.com:aminnairi/tictactoe
-cd tictactoe
-```
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 [Back to summary](#summary)
 
-### Installation
+## License
 
-```bash
-npm install
-```
+See [`LICENSE`](./LICENSE).
 
 [Back to summary](#summary)
 
-### Infrastructures
+## Security
 
-[Back to summary](#summary)
-
-#### React
-
-[Back to summary](#summary)
-
-##### Watch
-
-```bash
-npm --workspace infrastructure/react run watch
-```
-[Back to summary](#summary)
-
-##### Build
-
-```bash
-npm --workspace infrastructure/react run build
-```
-
-[Back to summary](#summary)
-
-##### Start
-
-```bash
-npm --workspace infrastructure/react start
-```
-
-[Back to summary](#summary)
-
-#### Vue
-
-[Back to summary](#summary)
-
-##### Watch
-
-```bash
-npm --workspace infrastructure/vue run watch
-```
-
-[Back to summary](#summary)
-
-##### Build
-
-```bash
-npm --workspace infrastructure/vue run build
-```
-
-[Back to summary](#summary)
-
-##### Start
-
-```bash
-npm --workspace infrastructure/vue start
-```
-
-[Back to summary](#summary)
-
-#### Vitest
-
-[Back to summary](#summary)
-
-##### Test
-
-```bash
-npm --workspace infrastructure/vitest test
-```
+See [`SECURITY.md`](./SECURITY.md).
 
 [Back to summary](#summary)
