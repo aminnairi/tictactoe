@@ -5,3 +5,5 @@
 /infrastructure/vue/node_modules
 
 /infrastructure/vitest/node_modules
+
+/infrastructure/preact/node_modules
