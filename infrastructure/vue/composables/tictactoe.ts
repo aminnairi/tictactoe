@@ -1,9 +1,9 @@
 import { ref } from "vue";
 
-import { CreateBoardUsecase } from "../../../domain/usecases/create-board";
-import { SelectSquareUsecase } from "../../../domain/usecases/select-square";
-import { GetWinnerUsecase } from "../../../domain/usecases/get-winner";
-import { PlayerEnumeration } from "../../../domain/enumerations/player";
+import { CreateBoardUsecase } from "@application/domain/usecases/create-board";
+import { SelectSquareUsecase } from "@application/domain/usecases/select-square";
+import { GetWinnerUsecase } from "@application/domain/usecases/get-winner";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
 
 export const useTictactoe = () => {
   const createBoardUsecase = new CreateBoardUsecase();
@@ -16,25 +16,21 @@ export const useTictactoe = () => {
   const board = ref(createBoardUsecase.execute(3, 3));
 
   const onSquareClicked = (row: number, column: number) => {
-    const possibleNewBoard = selectSquareUsecase.execute(board.value, player.value, row, column);
-    const newBoard = possibleNewBoard.withDefault(board.value);
-    const newError = possibleNewBoard.withError();
-
-    error.value = newError; 
-
-    if (error.value) {
-      return;
-    }
-
-    board.value = newBoard;
-    player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
-    winner.value = getWinnerUsecase.execute(newBoard);
+    selectSquareUsecase.execute(board.value, player.value, row, column).onValue(newBoard => {
+      error.value = null;
+      player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
+      board.value = newBoard;
+      winner.value = getWinnerUsecase.execute(newBoard);
+    }).onIssue(issue => {
+      error.value = issue;
+    });
   };
 
   const restart = () => {
     error.value = null;
     board.value = createBoardUsecase.execute(3, 3);
     winner.value = undefined;
+    player.value = PlayerEnumeration.Circle;
   };
 
   return {

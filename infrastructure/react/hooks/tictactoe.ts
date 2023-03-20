@@ -15,27 +15,22 @@ export const useTictactoe = () => {
   const [error, setError] = useState<Error | null>(null);
 
   const onSquareClicked = useCallback((player: PlayerEnumeration, row: number, column: number): MouseEventHandler<HTMLDivElement> => () => {
-    const possibleNewBoard = selectSquareUsecase.execute(board, player, row, column);
-    const newBoard = possibleNewBoard.withDefault(board);
-    const error = possibleNewBoard.withError();
-
-    setError(error);
-
-    if (error) {
-      return;
-    }
-
-    setBoard(newBoard);
-    setPlayer(player === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle);
-  }, [board, player, selectSquareUsecase, setBoard, setPlayer]);
+    selectSquareUsecase.execute(board, player, row, column).onValue(newBoard => {
+      setError(null);
+      setBoard(newBoard);
+      setPlayer(player === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle);
+      setWinner(getWinnerUsecase.execute(newBoard));
+    }).onIssue(issue => {
+      setError(issue);
+    });
+  }, [board, player]);
 
   const onRestartClicked = useCallback(() => {
     setBoard(createBoardUsecase.execute(3, 3));
-  }, [setBoard, createBoardUsecase]);
-
-  useEffect(() => {
-    setWinner(getWinnerUsecase.execute(board));
-  }, [board, setWinner, getWinnerUsecase]);
+    setWinner(undefined);
+    setError(null);
+    setPlayer(PlayerEnumeration.Circle);
+  }, []);
 
   return {
     error,

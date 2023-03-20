@@ -15,19 +15,14 @@ export const error = signal<string | null>(null);
 
 export const onSquareClicked = (row: number, column: number) => {
     return () => {
-        const possibleNewBoard = selectSquareUsecase.execute(board.value, player.value, row, column);
-        const newBoard = possibleNewBoard.withDefault(board.value);
-        const newError = possibleNewBoard.withError();
-
-        if (newError) {
-            error.value = String(newError);
-            return;
-        }
-
-        error.value = null;
-        board.value = newBoard
-        player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
-        winner.value = getWinnerUsecase.execute(newBoard);
+        selectSquareUsecase.execute(board.value, player.value, row, column).onValue(newBoard => {
+            error.value = null;
+            board.value = newBoard
+            player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
+            winner.value = getWinnerUsecase.execute(newBoard);
+        }).onIssue(issue => {
+            error.value = String(issue);
+        });
     };
 };
 
