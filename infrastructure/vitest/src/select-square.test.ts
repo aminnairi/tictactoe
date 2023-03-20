@@ -7,14 +7,14 @@ import { RowGreaterThanBoardLengthError } from "@application/domain/errors/row-g
 import { RowLessThanZeroError } from "@application/domain/errors/row-less-than-zero";
 import { SelectSquareUsecase } from "@application/domain/usecases/select-square";
 
-it("should throw an error when selecting a row below zero", () => {
+it("should return an error when selecting a row below zero", () => {
     const selectSquareUsecase = new SelectSquareUsecase();
 
     const board = {
         squares: [[]]
     };
 
-    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, -1, 0)).toThrowError(RowLessThanZeroError);
+    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, -1, 0).withError()).toBeInstanceOf(RowLessThanZeroError);
 });
 
 it("should throw an error when selecting a row outside of the board", () => {
@@ -24,7 +24,7 @@ it("should throw an error when selecting a row outside of the board", () => {
         squares: [[]]
     };
 
-    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 10, 0)).toThrowError(RowGreaterThanBoardLengthError);
+    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 10, 0).withError()).toBeInstanceOf(RowGreaterThanBoardLengthError);
 });
 
 it("should throw an error when selecting a column below zero", () => {
@@ -34,7 +34,7 @@ it("should throw an error when selecting a column below zero", () => {
         squares: [[]]
     };
 
-    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, -1)).toThrowError(ColumnLessThanZeroError);
+    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, -1).withError()).toBeInstanceOf(ColumnLessThanZeroError);
 });
 
 it("should throw an error when selecting a column oustdide the board", () => {
@@ -44,7 +44,7 @@ it("should throw an error when selecting a column oustdide the board", () => {
         squares: [[]]
     };
 
-    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 10)).toThrowError(ColumnGreaterThanRowLengthError);
+    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 10).withError()).toBeInstanceOf(ColumnGreaterThanRowLengthError);
 });
 
 it("should throw an error when selecting a column already selected", () => {
@@ -54,7 +54,7 @@ it("should throw an error when selecting a column already selected", () => {
         squares: [[{player: PlayerEnumeration.Circle}]]
     };
 
-    expect(() => selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 0)).toThrowError(AlreadySelectedSquareError);
+    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 0).withError()).toBeInstanceOf(AlreadySelectedSquareError);
 });
 
 it("should work when selecting as circle", () => {
@@ -82,7 +82,7 @@ it("should work when selecting as circle", () => {
 
     const newBoard = selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 0);
 
-    expect(newBoard).toStrictEqual({
+    expect(newBoard.withDefault(board)).toStrictEqual({
         squares: [
             [
                 { player: PlayerEnumeration.Circle },
@@ -128,7 +128,7 @@ it("should work when selecting as cross", () => {
 
     const newBoard = selectSquareUsecase.execute(board, PlayerEnumeration.Cross, 0, 0);
 
-    expect(newBoard).toStrictEqual({
+    expect(newBoard.withDefault(board)).toStrictEqual({
         squares: [
             [
                 { player: PlayerEnumeration.Cross },
