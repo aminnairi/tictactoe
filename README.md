@@ -1,6 +1,6 @@
 # tictactoe
 
-Tictactoe implementation in React & Vue.js
+Tictactoe implementation in different frontend frameworks
 
 ## Summary
 
