@@ -2,8 +2,9 @@
   "private": true,
   "workspaces": [
     "domain",
+    "infrastructure/preact",
     "infrastructure/react",
-    "infrastructure/vue",
-    "infrastructure/vitest"
+    "infrastructure/vitest",
+    "infrastructure/vue"
   ]
 }

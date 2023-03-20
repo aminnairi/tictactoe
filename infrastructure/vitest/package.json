@@ -1,7 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "test": "vitest"
+        "test": "vitest",
+        "coverage": "vitest --coverage"
     },
     "devDependencies": {
         "@vitest/coverage-c8": "0.29.3",
