@@ -25,7 +25,7 @@ it("should return the winner of the first row", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Circle);
 });
@@ -53,7 +53,7 @@ it("should return the winner of the second row", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Circle);
 });
@@ -81,7 +81,7 @@ it("should return the winner of the third row", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Circle);
 });
@@ -109,7 +109,7 @@ it("should return the winner of the first column", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Cross);
 });
@@ -137,7 +137,7 @@ it("should return the winner of the second column", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Cross);
 });
@@ -165,7 +165,7 @@ it("should return the winner of the third column", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Cross);
 });
@@ -193,7 +193,7 @@ it("should return the winner of the first diagonal", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Circle);
 });
@@ -221,7 +221,7 @@ it("should return the winner of the second diagonal", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.Circle);
 });
@@ -249,7 +249,7 @@ it("should return no winner", () => {
         ]
     };
 
-    const winner = getWinnerUsecasee.execute(board);
+    const winner = getWinnerUsecasee.execute({ board });
 
     expect(winner).toEqual(PlayerEnumeration.None);
 });

@@ -1,9 +1,9 @@
 import { PlayerEnumeration } from "@application/domain/enumerations/player";
-import { BoardEntityInterface } from "@application/domain/entities/board";
 import { SquareEntityInterface } from "@application/domain/entities/square";
+import { GetWinnerRequestInterface } from "@application/domain/requests/get-winner";
 
 export class GetWinnerUsecase {
-  public execute(board: BoardEntityInterface): PlayerEnumeration | undefined {
+  public execute({ board }: GetWinnerRequestInterface): PlayerEnumeration | undefined {
     const winner: PlayerEnumeration | undefined = [PlayerEnumeration.Circle, PlayerEnumeration.Cross].find(player => {
       const rows: Array<Array<SquareEntityInterface>> = board.squares;
 

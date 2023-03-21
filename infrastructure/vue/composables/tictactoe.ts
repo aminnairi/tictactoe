@@ -13,14 +13,14 @@ export const useTictactoe = () => {
   const error = ref(null);
   const player = ref(PlayerEnumeration.Circle);
   const winner = ref(undefined);
-  const board = ref(createBoardUsecase.execute(3, 3));
+  const board = ref(createBoardUsecase.execute({ rows: 3, columns: 3 }));
 
   const onSquareClicked = (row: number, column: number) => {
-    selectSquareUsecase.execute(board.value, player.value, row, column).onValue(newBoard => {
+    selectSquareUsecase.execute({ board: board.value, player: player.value, selectedRow: row, selectedColumn: column }).onValue(newBoard => {
       error.value = null;
       player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
       board.value = newBoard;
-      winner.value = getWinnerUsecase.execute(newBoard);
+      winner.value = getWinnerUsecase.execute({ board: newBoard });
     }).onIssue(issue => {
       error.value = issue;
     });
@@ -28,7 +28,7 @@ export const useTictactoe = () => {
 
   const restart = () => {
     error.value = null;
-    board.value = createBoardUsecase.execute(3, 3);
+    board.value = createBoardUsecase.execute({ rows: 3, columns: 3 });
     winner.value = undefined;
     player.value = PlayerEnumeration.Circle;
   };

@@ -8,18 +8,18 @@ const createBoardUsecase = new CreateBoardUsecase()
 const selectSquareUsecase = new SelectSquareUsecase();
 const getWinnerUsecase = new GetWinnerUsecase();
 
-export const board = signal(createBoardUsecase.execute(3, 3));
+export const board = signal(createBoardUsecase.execute({ rows: 3, columns: 3 }));
 export const player = signal(PlayerEnumeration.Circle);
 export const winner = signal<PlayerEnumeration | undefined>(undefined);
 export const error = signal<string | null>(null);
 
 export const onSquareClicked = (row: number, column: number) => {
     return () => {
-        selectSquareUsecase.execute(board.value, player.value, row, column).onValue(newBoard => {
+        selectSquareUsecase.execute({ board: board.value, player: player.value, selectedRow: row, selectedColumn: column }).onValue(newBoard => {
             error.value = null;
             board.value = newBoard
             player.value = player.value === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle;
-            winner.value = getWinnerUsecase.execute(newBoard);
+            winner.value = getWinnerUsecase.execute({board: newBoard});
         }).onIssue(issue => {
             error.value = String(issue);
         });
@@ -28,7 +28,7 @@ export const onSquareClicked = (row: number, column: number) => {
 
 export const restart = () => {
     error.value = null;
-    board.value = createBoardUsecase.execute(3, 3);
+    board.value = createBoardUsecase.execute({ rows: 3, columns: 3 });
     player.value = PlayerEnumeration.Circle;
     winner.value = undefined;
 }

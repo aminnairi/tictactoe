@@ -14,7 +14,7 @@ it("should return an error when selecting a row below zero", () => {
         squares: [[]]
     };
 
-    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, -1, 0).withError()).toBeInstanceOf(RowLessThanZeroError);
+    expect(selectSquareUsecase.execute({ board, player: PlayerEnumeration.Circle, selectedRow: -1, selectedColumn: 0 }).withError()).toBeInstanceOf(RowLessThanZeroError);
 });
 
 it("should throw an error when selecting a row outside of the board", () => {
@@ -24,7 +24,7 @@ it("should throw an error when selecting a row outside of the board", () => {
         squares: [[]]
     };
 
-    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 10, 0).withError()).toBeInstanceOf(RowGreaterThanBoardLengthError);
+    expect(selectSquareUsecase.execute({ board, player: PlayerEnumeration.Circle, selectedRow: 10, selectedColumn: 0 }).withError()).toBeInstanceOf(RowGreaterThanBoardLengthError);
 });
 
 it("should throw an error when selecting a column below zero", () => {
@@ -34,7 +34,7 @@ it("should throw an error when selecting a column below zero", () => {
         squares: [[]]
     };
 
-    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, -1).withError()).toBeInstanceOf(ColumnLessThanZeroError);
+    expect(selectSquareUsecase.execute({ board, player: PlayerEnumeration.Circle, selectedRow: 0, selectedColumn: -1 }).withError()).toBeInstanceOf(ColumnLessThanZeroError);
 });
 
 it("should throw an error when selecting a column oustdide the board", () => {
@@ -44,7 +44,7 @@ it("should throw an error when selecting a column oustdide the board", () => {
         squares: [[]]
     };
 
-    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 10).withError()).toBeInstanceOf(ColumnGreaterThanRowLengthError);
+    expect(selectSquareUsecase.execute({ board, player: PlayerEnumeration.Circle, selectedRow: 0, selectedColumn: 10 }).withError()).toBeInstanceOf(ColumnGreaterThanRowLengthError);
 });
 
 it("should throw an error when selecting a column already selected", () => {
@@ -54,7 +54,7 @@ it("should throw an error when selecting a column already selected", () => {
         squares: [[{player: PlayerEnumeration.Circle}]]
     };
 
-    expect(selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 0).withError()).toBeInstanceOf(AlreadySelectedSquareError);
+    expect(selectSquareUsecase.execute({ board: board, player: PlayerEnumeration.Circle, selectedRow: 0, selectedColumn: 0 }).withError()).toBeInstanceOf(AlreadySelectedSquareError);
 });
 
 it("should work when selecting as circle", () => {
@@ -80,7 +80,7 @@ it("should work when selecting as circle", () => {
         ]
     }
 
-    const newBoard = selectSquareUsecase.execute(board, PlayerEnumeration.Circle, 0, 0);
+    const newBoard = selectSquareUsecase.execute({ board, player: PlayerEnumeration.Circle, selectedRow: 0, selectedColumn: 0 });
 
     expect(newBoard.withDefault(board)).toStrictEqual({
         squares: [
@@ -126,7 +126,7 @@ it("should work when selecting as cross", () => {
         ]
     }
 
-    const newBoard = selectSquareUsecase.execute(board, PlayerEnumeration.Cross, 0, 0);
+    const newBoard = selectSquareUsecase.execute({ board, player: PlayerEnumeration.Cross, selectedRow: 0, selectedColumn: 0 });
 
     expect(newBoard.withDefault(board)).toStrictEqual({
         squares: [

@@ -6,9 +6,10 @@ import { RowGreaterThanBoardLengthError } from "@application/domain/errors/row-g
 import { ColumnGreaterThanRowLengthError } from "@application/domain/errors/column-greater-than-row-length";
 import { AlreadySelectedSquareError } from "@application/domain/errors/already-selected-square";
 import { Possibility, Value, Issue } from "@application/domain/core/possibility";
+import { SelectSquareRequestInterface } from "@application/domain/requests/select-square";
 
 export class SelectSquareUsecase {
-  public execute(board: BoardEntityInterface, player: PlayerEnumeration, selectedRow: number, selectedColumn: number): Possibility<Error, BoardEntityInterface> {
+  public execute({ board, player, selectedRow, selectedColumn }: SelectSquareRequestInterface): Possibility<Error, BoardEntityInterface> {
     if (selectedRow < 0) {
       return new Issue(new RowLessThanZeroError("Row cannot be less than zero"));
     }

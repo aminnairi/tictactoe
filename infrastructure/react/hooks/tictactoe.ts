@@ -10,23 +10,23 @@ export const useTictactoe = () => {
   const getWinnerUsecase = useMemo(() => new GetWinnerUsecase(), []);
 
   const [player, setPlayer] = useState(PlayerEnumeration.Cross);
-  const [board, setBoard] = useState(createBoardUsecase.execute(3, 3));
+  const [board, setBoard] = useState(createBoardUsecase.execute({ rows: 3, columns: 3 }));
   const [winner, setWinner] = useState<PlayerEnumeration | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
   const onSquareClicked = useCallback((player: PlayerEnumeration, row: number, column: number): MouseEventHandler<HTMLDivElement> => () => {
-    selectSquareUsecase.execute(board, player, row, column).onValue(newBoard => {
+    selectSquareUsecase.execute({ board, player, selectedRow: row, selectedColumn: column }).onValue(newBoard => {
       setError(null);
       setBoard(newBoard);
       setPlayer(player === PlayerEnumeration.Circle ? PlayerEnumeration.Cross : PlayerEnumeration.Circle);
-      setWinner(getWinnerUsecase.execute(newBoard));
+      setWinner(getWinnerUsecase.execute({ board: newBoard }));
     }).onIssue(issue => {
       setError(issue);
     });
   }, [board, player]);
 
   const onRestartClicked = useCallback(() => {
-    setBoard(createBoardUsecase.execute(3, 3));
+    setBoard(createBoardUsecase.execute({ rows: 3, columns: 3 }));
     setWinner(undefined);
     setError(null);
     setPlayer(PlayerEnumeration.Circle);

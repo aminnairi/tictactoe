@@ -1,7 +1,9 @@
 import { Fragment } from "preact";
 import { board, player, winner, error, onSquareClicked, restart } from "./signals/tictactoe";
 import { Player } from "./components/player";
-
+import { Notification, SeverityEnumeration } from "./components/notification";
+import { Square } from "./components/square";
+import { Row } from "./components/row";
 
 export const Main = () => {
     if (winner.value) {
@@ -18,15 +20,15 @@ export const Main = () => {
         <Fragment>
             <h1>Tictactoe</h1>
             <p>It's {player} turn</p>
-            {error.value && <small style={{ padding: 5, backgroundColor: "darkred", color: "red" }}>{error}</small>}
+            <Notification error={error.value} severity={SeverityEnumeration.Error} />
             {board.value.squares.map((row, rowIndex) => (
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <Row>
                     {row.map((column, columnIndex) => (
-                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", border: "1px solid black", height: "50px", width: "50px", cursor: "pointer" }} onClick={onSquareClicked(rowIndex, columnIndex)}>
+                        <Square onSquareClicked={onSquareClicked(rowIndex, columnIndex)}>
                             <Player player={column.player} />
-                        </div>
+                        </Square>
                     ))}
-                </div>
+                </Row>
             ))}
         </Fragment>
     )

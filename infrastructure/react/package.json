@@ -3,7 +3,9 @@
   "description": "React Infrastructure",
   "version": "0.1.0",
   "scripts": {
-    "watch": "vite"
+    "watch": "vite",
+    "build": "vite build",
+    "start": "vite preview"
   },
   "devDependencies": {
     "@types/react": "18.0.28",
