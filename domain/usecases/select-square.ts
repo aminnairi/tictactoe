@@ -1,11 +1,11 @@
-import { BoardEntityInterface } from "../entities/board";
-import { PlayerEnumeration } from "../enumerations/player";
-import { RowLessThanZeroError } from "../errors/row-less-than-zero";
-import { ColumnLessThanZeroError } from "../errors/column-less-than-zero";
-import { RowGreaterThanBoardLengthError } from "../errors/row-greater-than-board-length";
-import { ColumnGreaterThanRowLengthError } from "../errors/column-greater-than-row-length";
-import { AlreadySelectedSquareError } from "../errors/already-selected-square";
-import { Possibility, Value, Issue } from "../core/result";
+import { BoardEntityInterface } from "@application/domain/entities/board";
+import { PlayerEnumeration } from "@application/domain/enumerations/player";
+import { RowLessThanZeroError } from "@application/domain/errors/row-less-than-zero";
+import { ColumnLessThanZeroError } from "@application/domain/errors/column-less-than-zero";
+import { RowGreaterThanBoardLengthError } from "@application/domain/errors/row-greater-than-board-length";
+import { ColumnGreaterThanRowLengthError } from "@application/domain/errors/column-greater-than-row-length";
+import { AlreadySelectedSquareError } from "@application/domain/errors/already-selected-square";
+import { Possibility, Value, Issue } from "@application/domain/core/possibility";
 
 export class SelectSquareUsecase {
   public execute(board: BoardEntityInterface, player: PlayerEnumeration, selectedRow: number, selectedColumn: number): Possibility<Error, BoardEntityInterface> {

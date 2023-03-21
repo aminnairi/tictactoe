@@ -3,10 +3,12 @@ export interface Possibility<IssueType, ValueType> {
     transform: <NewValueType>(updateValue: (value: ValueType) => Possibility<IssueType, NewValueType>) => Possibility<IssueType, NewValueType>
     onValue: (handler: (value: ValueType) => void) => Possibility<IssueType, ValueType>;
     onIssue: (handler: (issue: IssueType) => void) => Possibility<IssueType, ValueType>;
+    withDefault: (value: ValueType) => ValueType;
+    withError: () => IssueType | null;
 }
 
 export class Value<IssueType, ValueType> implements Possibility<IssueType, ValueType> {
-    public constructor(private readonly value: ValueType) {}
+    public constructor(private readonly value: ValueType) { }
 
     public update<NewValueType>(updateValue: (value: ValueType) => NewValueType): Possibility<IssueType, NewValueType> {
         return new Value(updateValue(this.value));
@@ -24,10 +26,18 @@ export class Value<IssueType, ValueType> implements Possibility<IssueType, Value
     public onIssue(handler: (issue: IssueType) => void): Possibility<IssueType, ValueType> {
         return this;
     }
+
+    public withDefault(value: ValueType): ValueType {
+        return this.value;
+    }
+
+    public withError(): IssueType | null {
+        return null;
+    }
 }
 
 export class Issue<IssueType, ValueType> implements Possibility<IssueType, ValueType> {
-    public constructor(private readonly issue: IssueType) {}
+    public constructor(private readonly issue: IssueType) { }
 
     public update<NewValueType>(updateValue: (value: ValueType) => NewValueType): Possibility<IssueType, NewValueType> {
         return new Issue(this.issue);
@@ -44,5 +54,13 @@ export class Issue<IssueType, ValueType> implements Possibility<IssueType, Value
     public onIssue(handler: (issue: IssueType) => void): Possibility<IssueType, ValueType> {
         handler(this.issue);
         return this;
+    }
+
+    public withDefault(value: ValueType): ValueType {
+        return value;
+    }
+
+    public withError(): IssueType | null {
+        return this.issue;
     }
 }
