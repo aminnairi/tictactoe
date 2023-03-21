@@ -106,6 +106,33 @@ npm --workspace infrastructure/react start
 
 [Back to summary](#summary)
 
+### Solid
+
+[Back to summary](#summary)
+
+#### Watch
+
+```bash
+npm --workspace infrastructure/solid run watch
+```
+[Back to summary](#summary)
+
+#### Build
+
+```bash
+npm --workspace infrastructure/solid run build
+```
+
+[Back to summary](#summary)
+
+#### Start
+
+```bash
+npm --workspace infrastructure/solid start
+```
+
+[Back to summary](#summary)
+
 ### Vue
 
 [Back to summary](#summary)

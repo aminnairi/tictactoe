@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "name": "@infrastructure/solid",
+    "descrpition": "Solid Infrastructure",
+    "version": "0.1.0",
+    "scripts": {
+        "watch": "vite",
+        "build": "vite build",
+        "start": "vite preview"
+    },
+    "dependencies": {
+        "solid-js": "1.6.15"
+    },
+    "devDependencies": {
+        "vite": "4.2.1",
+        "vite-plugin-solid": "2.6.1"
+    }
+}

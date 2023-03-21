@@ -4,6 +4,7 @@
     "domain",
     "infrastructure/preact",
     "infrastructure/react",
+    "infrastructure/solid",
     "infrastructure/vitest",
     "infrastructure/vue"
   ]

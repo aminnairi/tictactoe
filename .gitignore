@@ -1,9 +1,15 @@
 /node_modules
 
 /infrastructure/react/node_modules
+/infrastructure/react/dist
 
 /infrastructure/vue/node_modules
+/infrastructure/vue/dist
 
 /infrastructure/vitest/node_modules
 
 /infrastructure/preact/node_modules
+/infrastructure/preact/dist
+
+/infrastructure/solid/node_modules
+/infrastructure/solid/dist
